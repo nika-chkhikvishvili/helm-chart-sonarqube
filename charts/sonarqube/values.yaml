@@ -74,7 +74,7 @@ networkPolicy:
 
 # also install the nginx ingress helm chart
 nginx:
-  enabled: false
+  enabled: true
 
 ingress:
   enabled: false
@@ -126,17 +126,17 @@ affinity: {}
 # kubectl taint nodes <node> sonarqube=true:NoSchedule
 # The following statement will tolerate this taint and as such reverse a node for sonarqube
 tolerations: []
-#  - key: "sonarqube"
-#    operator: "Equal"
-#    value: "true"
-#    effect: "NoSchedule"
+  - key: "sonarqube"
+    operator: "Equal"
+    value: "true"
+    effect: "NoSchedule"
 
 # Node labels for pod assignment
 # Ref: https://kubernetes.io/docs/user-guide/node-selection/
 # add a label to a node with the following command
 # kubectl label node <node> sonarqube=true
 nodeSelector: {}
-#  sonarqube: "true"
+  sonarqube: "true"
 
 # hostAliases allows the modification of the hosts file inside a container
 hostAliases: []
